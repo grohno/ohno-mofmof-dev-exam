@@ -1,25 +1,30 @@
 class RentalsController < ApplicationController
   before_action :set_rental, only: %i[ show edit update destroy ]
 
-  # GET /rentals or /rentals.json
   def index
     @rentals = Rental.all
   end
 
-  # GET /rentals/1 or /rentals/1.json
   def show
   end
 
-  # GET /rentals/new
   def new
-    @rental = Rental.new
+    if params[:back]
+      @rental = Rental.new(rental_params)
+    else
+      @rental = Rental.new
+      @rental.stations.new
+    end
   end
 
-  # GET /rentals/1/edit
+  def confirm
+    @rental = Rental.new(rental_params)
+    render :new if @rental.invalid?
+  end
+
   def edit
   end
 
-  # POST /rentals or /rentals.json
   def create
     @rental = Rental.new(rental_params)
 
@@ -34,7 +39,6 @@ class RentalsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /rentals/1 or /rentals/1.json
   def update
     respond_to do |format|
       if @rental.update(rental_params)
@@ -47,7 +51,6 @@ class RentalsController < ApplicationController
     end
   end
 
-  # DELETE /rentals/1 or /rentals/1.json
   def destroy
     @rental.destroy
     respond_to do |format|
@@ -57,13 +60,11 @@ class RentalsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_rental
-      @rental = Rental.find(params[:id])
-    end
+  def set_rental
+    @rental = Rental.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def rental_params
-      params.require(:rental).permit(:rent_property_name, :rent, :address, :building_age, :note)
-    end
+  def rental_params
+    params.require(:rental).permit(:rent_property_name, :rent, :address, :building_age, :note, stations_attributes: [:id, :route_name, :station_name, :walk_fraction])
+  end
 end
