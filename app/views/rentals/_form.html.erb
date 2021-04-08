@@ -1,4 +1,4 @@
-<%= form_with(model: rental, local: true, url:rentals_path) do |form| %>
+<%= form_with(model: rental, local: true) do |form| %>
   <% if rental.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(rental.errors.count, "件") %> のエラーがあります。</h2>
