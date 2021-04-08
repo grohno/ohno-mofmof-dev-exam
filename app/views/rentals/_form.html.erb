@@ -1,7 +1,7 @@
-<%= form_with(model: rental, local: true) do |form| %>
+<%= form_with(model: rental, local: true, url:choose_new_or_edit) do |form| %>
   <% if rental.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(rental.errors.count, "error") %> prohibited this rental from being saved:</h2>
+      <h2><%= pluralize(rental.errors.count, "件") %> のエラーがあります。</h2>
 
       <ul>
       <% rental.errors.full_messages.each do |message| %>
@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :rent %>
-    <%= form.number_field :rent %>
+    <%= form.number_field :rent %>円
   </div>
 
   <div class="field">
@@ -28,13 +28,33 @@
 
   <div class="field">
     <%= form.label :building_age %>
-    <%= form.number_field :building_age %>
+    <%= form.number_field :building_age %>年
   </div>
 
   <div class="field">
     <%= form.label :note %>
     <%= form.text_area :note %>
   </div>
+
+  <%= form.fields_for :stations do | station | %>
+    <h2>最寄り駅<%= station.index + 1 %></h2>
+
+    <div class="field">
+      <%= station.label :route_name %>
+      <%= station.text_field :route_name %>
+    </div>
+
+    <div class="field">
+      <%= station.label :station_name %>
+      <%= station.text_field :station_name %>
+    </div>
+
+    <div class="field">
+      <%= station.label :walk_fraction %>
+      <%= station.number_field :walk_fraction %>分
+    </div>
+
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>

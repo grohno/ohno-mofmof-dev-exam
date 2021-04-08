@@ -5,4 +5,5 @@ class Rental < ApplicationRecord
   validates :rent, presence: true
   validates :address, presence: true
   validates :building_age, presence: true
+  validates :note, length: { in: 1..1000 }
 end
