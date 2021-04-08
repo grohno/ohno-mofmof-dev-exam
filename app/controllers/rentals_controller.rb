@@ -11,9 +11,10 @@ class RentalsController < ApplicationController
   def new
     if params[:back]
       @rental = Rental.new(rental_params)
+      2.times { @rental.stations.build }
     else
       @rental = Rental.new
-      @rental.stations.new
+      2.times { @rental.stations.build }
     end
   end
 
@@ -23,6 +24,7 @@ class RentalsController < ApplicationController
   end
 
   def edit
+    @rental.stations.build
   end
 
   def create

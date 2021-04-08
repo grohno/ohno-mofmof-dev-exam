@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Rentals</h1>
+<h1>物件一覧</h1>
 
 <table>
   <thead>
@@ -22,9 +22,9 @@
         <td><%= rental.address %></td>
         <td><%= rental.building_age %>年</td>
         <td><%= rental.note %></td>
-        <td><%= link_to 'Show', rental %></td>
-        <td><%= link_to 'Edit', edit_rental_path(rental), data: { confirm: '本当に編集していいですか？' } %></td>
-        <td><%= link_to 'Destroy', rental, method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+        <td><%= link_to '詳細', rental %></td>
+        <td><%= link_to '編集', edit_rental_path(rental), data: { confirm: '本当に編集していいですか？' } %></td>
+        <td><%= link_to '削除', rental, method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
       </tr>
     <% end %>
   </tbody>
