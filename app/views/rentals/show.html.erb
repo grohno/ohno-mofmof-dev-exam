@@ -1,29 +1,26 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>物件名:</strong>
-  <%= @rental.rent_property_name %>
-</p>
-
-<p>
-  <strong>賃料:</strong>
-  <%= @rental.rent.to_s(:delimited) %>円
-</p>
-
-<p>
-  <strong>住所:</strong>
-  <%= @rental.address %>
-</p>
-
-<p>
-  <strong>築年数:</strong>
-  <%= @rental.building_age %>年
-</p>
-
-<p>
-  <strong>備考:</strong>
-  <%= @rental.note %>
-</p>
+<section id="rental">
+  <p>
+    <strong>物件名:</strong>
+    <%= @rental.rent_property_name %>
+  </p>
+  <p>
+    <strong>賃料:</strong>
+    <%= @rental.rent.to_s(:delimited) %>円
+  </p>
+  <p>
+    <strong>住所:</strong>
+    <%= @rental.address %>
+  </p>
+  <p>
+    <strong>築年数:</strong>
+    <%= @rental.building_age %>年
+  </p>
+  <p>
+    <strong>備考:</strong>
+    <%= @rental.note %>
+  </p>
+</section>
 
 <dl>
   <% @rental.stations.each_with_index do |station, i| %>
